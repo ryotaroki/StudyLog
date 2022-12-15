@@ -18,3 +18,10 @@ Route::get('/', function () {
 });
 
 ROute::get('posts', [PostsController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('posts/add', [PostsController::class, 'add']);
+ROute::post('post/create', [PostsController::class, 'create']);
