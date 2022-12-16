@@ -12,7 +12,11 @@
         @foreach ($data as $item)
             <tr>
                 <td>{{ $item->title}}</td>
+                @if (mb_strlen($item->content) > 10)
+                <td>{{ substr($item->content, 0, 70) . '...'}}</td>
+                @else
                 <td>{{ $item->content}}</td>
+                @endif
                 <td>{{ $item->user_id}}</td>
                 <td>{{ $item->created_at}}</td>
                 @if ($item->genres != null)
