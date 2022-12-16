@@ -13,9 +13,10 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [PostsController::class, 'index'])->name('top');
 
 ROute::get('posts', [PostsController::class, 'index']);
 
@@ -23,5 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('posts/add', [PostsController::class, 'add']);
+Route::get('posts/add', [PostsController::class, 'add'])->name('add');
 ROute::post('post/create', [PostsController::class, 'create']);
+
+Route::get('posts/show/{id}', [PostsController::class, 'show'])->name('posts.show');

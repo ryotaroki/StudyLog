@@ -22,10 +22,14 @@ class PostsController extends Controller
 
     public function create(Request $request)
     {
+        // 新規投稿のジャンルのインスタンス作成
         $genre = new Genre;
+        // リクエストに格納されているジャンル名を取り出す
         $genre->genre_name = $request->genre_name;
+        // ジャンル名がすでにテーブルに登録されているか確認。
         $oldgenre = Genre::where('genre_name', $request->genre_name)->get();
         Log::alert($oldgenre);
+        // ジャンル名が登録されていなかった場合、新規で登録処理
         if($oldgenre == null) {
             $genre->save();
         }
@@ -42,5 +46,15 @@ class PostsController extends Controller
         $post->genres()->attach($genre->id);
         $post->fill($param)->save();
         return redirect('posts');
+    }
+
+    public function show(Request $request)
+    {
+        $post = Post::find($request->id);
+        $contents = $post->content;
+        $contents = explode('。', $contents);
+        array_pop($contents);
+        // dd($contents);
+        return view('posts.show', ['post' => $post, 'contents' => $contents]);
     }
 }

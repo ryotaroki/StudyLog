@@ -11,7 +11,7 @@
         </tr>
         @foreach ($data as $item)
             <tr>
-                <td>{{ $item->title}}</td>
+                <td><a href="{{ route('posts.show', ['id' => $item->id])}}">{{ $item->title}}</a></td>
                 @if (mb_strlen($item->content) > 10)
                 <td>{{ substr($item->content, 0, 70) . '...'}}</td>
                 @else

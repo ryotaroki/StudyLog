@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label>Content</label>
-            <input type="text" name="content" class="form-control">
+            <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <label>genre</label>
